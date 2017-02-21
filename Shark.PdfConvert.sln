@@ -15,7 +15,7 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Shark.PdfConvert", "src\Sha
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{D0BCEB75-2431-4DD0-900F-883608776987}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Shark.PdfConvert.test", "Shark.PdfConvert.test\Shark.PdfConvert.test.xproj", "{AB26A22D-B2E1-4FD7-89C5-65A24B71D75A}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Shark.PdfConvert.test", "test\Shark.PdfConvert.test\Shark.PdfConvert.test.xproj", "{AB26A22D-B2E1-4FD7-89C5-65A24B71D75A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
