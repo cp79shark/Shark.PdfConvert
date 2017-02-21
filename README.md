@@ -94,5 +94,5 @@ Conversion setting defaults are set for a Windows environment and assume you hav
 
 ----
 ## Revision History
-* **0.2.0** - Modified Convert method signature to be a bit more sane, Added additional static content options, Added Url overrides if you wanted to have WkHTMLToPDF grab external sites for any portion of the generated document, exposed some process options
+* **1.0.0** - Should be stable going forward except for any bugs found. Modified Convert method signature to be a bit more sane, Added additional static content options, Added Url overrides if you wanted to have WkHTMLToPDF grab external sites for any portion of the generated document, exposed some process options
 * **0.1.0** - Initial Upload
