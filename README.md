@@ -13,7 +13,9 @@ Conversion setting defaults are set for a Windows environment and assume you hav
     PdfConvert.Convert(new PdfConversionSettings
     {
         Title = "My Static Content",
-        Content = @"<h1>Lorem ipsum dolor sit amet consectetuer adipiscing elit I SHOULD BE RED BY JAVASCRIPT</h1><script>document.querySelector('h1').style.color = 'rgb(128,0,0)';</script>",
+        Content = @"<h1>Lorem ipsum dolor sit amet consectetuer adipiscing elit 
+		    I SHOULD BE RED BY JAVASCRIPT</h1>
+			<script>document.querySelector('h1').style.color = 'rgb(128,0,0)';</script>",
         OutputPath = @"C:\temp\temp.pdf"
     });
 
