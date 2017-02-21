@@ -4,11 +4,12 @@
     {
         public string Content { get; set; }
         /// <summary>
-        /// Just the filename that the client expects for the PDF
+        /// If you want the file to be output to a specified path
+        /// Default is to use the Output Stream provided
         /// </summary>
-        public string OutputFilename { get; set; }
+        public string OutputPath { get; set; }
         /// <summary>
-        /// PDF Document Title, if desired
+        /// PDF Document Title, wkhtmltopdf will use HTML document title otherwise
         /// </summary>
         public string Title { get; set; }
         /// <summary>
@@ -28,20 +29,20 @@
         /// </summary>
         public string CustomWkHtmlTocArgs { get; set; }
         /// <summary>
-        /// Optional Footer Arguments, you must provide PageFooterHtml or a stream to the Convert method
+        /// Optional Footer Arguments, you must provide PageFooterHtml, PageFooterUrl, or a stream
         /// </summary>
         public string CustomWkHtmlFooterArgs { get; set; }
         /// <summary>
-        /// Optional Header Arguments, you must provide PageHeaderHtml or a stream to the Convert method
+        /// Optional Header Arguments, you must provide PageHeaderHtml, PageHeaderUrl, or a stream
         /// </summary>
         public string CustomWkHtmlHeaderArgs { get; set; }
         /// <summary>
         /// Get or set maximum execution time for PDF generation process (by default is null
-        ///     that means a long timeout, we're not going to allow no timeout, so 10 minutes in MS)
+        ///     that means a long timeout, we're not going to allow no timeout, so 5 minutes in MS)
         /// </summary>
-        public int ExecutionTimeout { get; set; } = ((10 * 60) * 1000);
+        public int ExecutionTimeout { get; set; } = 300000;
         /// <summary>
-        /// Gets or sets TOC generation flag
+        /// Gets or sets Table Of Contents generation flag
         /// </summary>
         public bool GenerateToc { get; set; }
         /// <summary>
@@ -49,7 +50,7 @@
         /// </summary>
         public bool Grayscale { get; set; }
         /// <summary>
-        /// Gets or sets option to generate low quality PDF (shrink the result document space)
+        /// Gets or sets option to generate low quality PDF
         /// </summary>
         public bool LowQuality { get; set; }
         /// <summary>
@@ -69,6 +70,10 @@
         /// </summary>
         public string PageHeaderHtml { get; set; }
         /// <summary>
+        /// Get or set custom Cover Page HTML
+        /// </summary>
+        public string PageCoverHtml { get; set; }
+        /// <summary>
         /// Gets or sets PDF page height (in mm)
         /// </summary>
         public float? PageHeight { get; set; }
@@ -83,7 +88,7 @@
         ///  By default this property points to the folder where application assemblies are
         ///     located. If WkHtmlToPdf tool files are not present conversion will fail.
         /// </remarks>
-        public string PdfToolPath { get; set; }
+        public string PdfToolPath { get; set; } = @"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe";
         /// <summary>
         /// Suppress wkhtmltopdf debug/info log messages (by default is true)
         /// </summary>
@@ -98,7 +103,7 @@
         /// </summary>
         /// <remarks>
         /// Temp files are used for providing cover page/header/footer HTML templates to
-        ///     wkhtmltopdf tool.
+        ///     wkhtmltopdf tool when you don't specify URLs
         /// </remarks>
         public string TempFilesPath { get; set; } = System.IO.Path.GetTempPath();
         /// <summary>
@@ -113,6 +118,34 @@
         /// Gets or sets zoom factor
         /// </summary>
         public float? Zoom { get; set; }
+        /// <summary>
+        /// If specified will override Content and any Stream passed to the Convert methods
+        /// </summary>
+        public string ContentUrl { get; set; }
+        /// <summary>
+        /// If specified will override PageHeaderHtml and any Stream passed to the Convert methods
+        /// </summary>
+        public string PageHeaderUrl { get; set; }
+        /// <summary>
+        /// If specified will override PageFooterUrl and any Stream passed to the Convert methods
+        /// </summary>
+        public string PageFooterUrl { get; set; }
+        /// <summary>
+        /// If specified will override PageCoverHtml and any Stream passed to the Convert methods
+        /// </summary>
+        public string PageCoverUrl { get; set; }
+        /// <summary>
+        /// There may be a quirk with an application usage scenario where you need a new window
+        /// </summary>
+        public bool ProcessOptionCreateNoWindow { get; set; } = true;
+        /// <summary>
+        /// If you're on a platform other than Windows, you may want to have the wkhtmltopdf run via shell
+        /// </summary>
+        public bool ProcessOptionUseShellExecute { get; set; } = false;
+        /// <summary>         
+        /// I've noticed some odd behavior with this ProcessStartInfo option enabled, so I'm making the default false
+        /// </summary>
+        public bool ProcessOptionRedirectStandardError { get; set; } = false;
     }
 
     /// <summary>
