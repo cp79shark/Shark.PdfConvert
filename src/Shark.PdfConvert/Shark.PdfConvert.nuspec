@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Shark.PdfConvert</id>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <title>Shark.PdfConvert</title>
     <authors>cp79shark</authors>
     <owners>cp79shark</owners>
@@ -11,7 +11,7 @@
     <iconUrl>http://www.clipartlord.com/wp-content/uploads/2013/08/shark3-240x240.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Simple .NET Core wrapper for the WkHTMLToPdf tool.</description>
-    <releaseNotes>1.0.0 - Shold be stable going forward except for bugs</releaseNotes>
+    <releaseNotes>1.0.1 - Minor Tweaks</releaseNotes>
     <copyright>Copyright 2017 CP79Shark</copyright>
     <tags>HTML PDF WKHTMLTOPDF Conversion</tags>
   </metadata>

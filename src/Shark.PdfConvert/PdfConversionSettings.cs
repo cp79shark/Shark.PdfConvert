@@ -2,10 +2,12 @@
 {
     public class PdfConversionSettings
     {
+        /// <summary>
+        /// Static HTML content
+        /// </summary>
         public string Content { get; set; }
         /// <summary>
-        /// If you want the file to be output to a specified path
-        /// Default is to use the Output Stream provided
+        /// If you want the file to be output to a specified path (directory + filename)
         /// </summary>
         public string OutputPath { get; set; }
         /// <summary>

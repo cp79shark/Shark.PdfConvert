@@ -1,0 +1,20 @@
+﻿{
+  "version": "1.0.0-*",
+  "buildOptions": {
+    "emitEntryPoint": true
+  },
+
+  "dependencies": {
+    "dotnet-test-nspec": "0.1.0",
+    "FluentAssertions": "4.19.0",
+    "Shark.PdfConvert": "1.0.0",
+    "Newtonsoft.Json": "9.0.1",
+    "NSpec": "2.0.0",
+    "System.Reflection": "4.0.10.0",
+    "Microsoft.AspNetCore.TestHost": "1.1.0"
+  },
+
+  "frameworks": {
+    "net461": {}
+  }
+}

@@ -34,7 +34,6 @@
             }
             else
             {
-                options.Append(" ");
                 options.Append(config.CustomWkHtmlArgs);
                 options.Append(" ");
             }
@@ -43,12 +42,11 @@
             if (string.IsNullOrWhiteSpace(temporaryCoverFilePath) == false ||
                 string.IsNullOrWhiteSpace(config.PageCoverUrl) == false)
             {
-                options.AppendFormat(" cover  \"{0}\" ",
+                options.AppendFormat("cover  \"{0}\" ",
                     string.IsNullOrWhiteSpace(config.PageCoverUrl) ? temporaryCoverFilePath : config.PageCoverUrl);
 
                 if (string.IsNullOrWhiteSpace(config.CustomWkHtmlCoverArgs) == false)
                 {
-                    options.Append(" ");
                     options.Append(config.CustomWkHtmlCoverArgs);
                     options.Append(" ");
                 }
@@ -58,12 +56,11 @@
             if (string.IsNullOrWhiteSpace(temporaryFooterFilePath) == false ||
                 string.IsNullOrWhiteSpace(config.PageFooterUrl) == false)
             {
-                options.AppendFormat(" --footer-html  \"{0}\" ",
+                options.AppendFormat("--footer-html  \"{0}\" ",
                     string.IsNullOrWhiteSpace(config.PageFooterUrl) ? temporaryFooterFilePath : config.PageFooterUrl);
 
                 if (string.IsNullOrWhiteSpace(config.CustomWkHtmlFooterArgs) == false)
                 {
-                    options.Append(" ");
                     options.Append(config.CustomWkHtmlFooterArgs);
                     options.Append(" ");
                 }
@@ -73,12 +70,11 @@
             if (string.IsNullOrWhiteSpace(temporaryHeaderFilePath) == false ||
                 string.IsNullOrWhiteSpace(config.PageHeaderUrl) == false)
             {
-                options.AppendFormat(" --header-html  \"{0}\" ",
+                options.AppendFormat("--header-html  \"{0}\" ",
                     string.IsNullOrWhiteSpace(config.PageHeaderUrl) ? temporaryHeaderFilePath : config.PageHeaderUrl);
 
                 if (string.IsNullOrWhiteSpace(config.CustomWkHtmlHeaderArgs) == false)
                 {
-                    options.Append(" ");
                     options.Append(config.CustomWkHtmlHeaderArgs);
                     options.Append(" ");
                 }
@@ -87,17 +83,16 @@
             // TABLE OF CONTENTS
             if (config.GenerateToc)
             {
-                options.Append(" toc ");
+                options.Append("toc ");
                 if (string.IsNullOrWhiteSpace(config.CustomWkHtmlTocArgs) == false)
                 {
-                    options.Append(" ");
                     options.Append(config.CustomWkHtmlTocArgs);
                     options.Append(" ");
                 }
             }
 
             // PAGE
-            options.AppendFormat(" page \"{1}\" \"{0}\"",
+            options.AppendFormat("page \"{1}\" \"{0}\" ",
                 temporaryPdfFilePath,
                 string.IsNullOrWhiteSpace(config.ContentUrl) ? temporaryContentFilePath : config.ContentUrl);
 
@@ -108,9 +103,7 @@
             }
             else
             {
-                options.Append(" ");
                 options.Append(config.CustomWkHtmlPageArgs);
-                options.Append(" ");
             }
 
             return options.ToString();
@@ -148,16 +141,25 @@
                 throw new ArgumentException("You must specify an output stream or an output path.");
 
             string temporaryContentFilePath = Path.Combine(config.TempFilesPath, $"{Guid.NewGuid()}.html");
+
             string temporaryPdfFilePath = string.IsNullOrWhiteSpace(config.OutputPath) ?
                 Path.Combine(config.TempFilesPath, $"{Guid.NewGuid()}.pdf") :
                 config.OutputPath;
-            string temporaryCoverFilePath = coverInputStream == null ?
+
+            // if no cover page html, url, or stream, don't set a temp path for the cover, footer, and/or header
+            string temporaryCoverFilePath = coverInputStream == null && 
+                    string.IsNullOrWhiteSpace(config.PageCoverHtml) &&
+                    string.IsNullOrWhiteSpace(config.PageCoverUrl) ?
                 null :
                 Path.Combine(config.TempFilesPath, $"{Guid.NewGuid()}.html");
-            string temporaryFooterFilePath = footerInputStream == null && string.IsNullOrWhiteSpace(config.PageFooterHtml) ?
+            string temporaryFooterFilePath = footerInputStream == null && 
+                    string.IsNullOrWhiteSpace(config.PageFooterHtml) &&
+                    string.IsNullOrWhiteSpace(config.PageFooterUrl) ?
                 null :
                 Path.Combine(config.TempFilesPath, $"{Guid.NewGuid()}.html");
-            string temporaryHeaderFilePath = headerInputStream == null && string.IsNullOrWhiteSpace(config.PageHeaderHtml) ?
+            string temporaryHeaderFilePath = headerInputStream == null && 
+                    string.IsNullOrWhiteSpace(config.PageHeaderHtml) &&
+                    string.IsNullOrWhiteSpace(config.PageHeaderUrl) ?
                 null :
                 Path.Combine(config.TempFilesPath, $"{Guid.NewGuid()}.html");
 

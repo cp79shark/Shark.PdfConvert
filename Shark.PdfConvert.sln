@@ -13,6 +13,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Shark.PdfConvert", "src\Shark.PdfConvert\Shark.PdfConvert.xproj", "{AE942498-A2E4-43F4-A141-5F3A0E91B049}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{D0BCEB75-2431-4DD0-900F-883608776987}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Shark.PdfConvert.test", "Shark.PdfConvert.test\Shark.PdfConvert.test.xproj", "{AB26A22D-B2E1-4FD7-89C5-65A24B71D75A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,11 +27,16 @@ Global
 		{AE942498-A2E4-43F4-A141-5F3A0E91B049}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE942498-A2E4-43F4-A141-5F3A0E91B049}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE942498-A2E4-43F4-A141-5F3A0E91B049}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB26A22D-B2E1-4FD7-89C5-65A24B71D75A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB26A22D-B2E1-4FD7-89C5-65A24B71D75A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB26A22D-B2E1-4FD7-89C5-65A24B71D75A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB26A22D-B2E1-4FD7-89C5-65A24B71D75A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{AE942498-A2E4-43F4-A141-5F3A0E91B049} = {102AF74D-6AEF-40EE-AFFF-B026BAD4EB90}
+		{AB26A22D-B2E1-4FD7-89C5-65A24B71D75A} = {D0BCEB75-2431-4DD0-900F-883608776987}
 	EndGlobalSection
 EndGlobal
