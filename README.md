@@ -9,7 +9,6 @@ Conversion setting defaults are set for a Windows environment and assume you hav
 
 **You will need to install/download [WkHtmlToPdf](http://wkhtmltopdf.org), it is not embedded in the NuGet Package**
 
-----
 ## Sample 1: Static HTML Content
 
     PdfConvert.Convert(new PdfConversionSettings
@@ -19,7 +18,6 @@ Conversion setting defaults are set for a Windows environment and assume you hav
         OutputPath = @"C:\temp\temp.pdf"
     });
 
-----
 ## Sample 2: Get Content from a URL
 
     PdfConvert.Convert(new PdfConversionSettings
@@ -29,7 +27,6 @@ Conversion setting defaults are set for a Windows environment and assume you hav
         OutputPath = @"C:\temp\temp-url.pdf"
     });
 
-----
 ## Sample 3: Use Streams for Output and Input
 
     PdfConversionSettings config = new PdfConversionSettings
@@ -48,7 +45,6 @@ Conversion setting defaults are set for a Windows environment and assume you hav
 		}
 	}
 
-----
 ## Sample 4: Mix and Match
 
     PdfConversionSettings config = new PdfConversionSettings
@@ -70,7 +66,6 @@ Conversion setting defaults are set for a Windows environment and assume you hav
         PdfConvert.Convert(config, fileStream);
     }
 
-----
 ## Sample 5: Usage inside MVC Controller Action
 
     public IActionResult ConvertToPdf([FromBody] PdfConversionSettings model) 
@@ -97,7 +92,6 @@ Conversion setting defaults are set for a Windows environment and assume you hav
         };
 	}
 
-----
 ## Revision History
 * **1.0.1** - Spoke to soon, updated the samples, they had a typo, small tweaks in the code, nothing breaking or signature modifying
 * **1.0.0** - Should be stable going forward except for any bugs found. Modified Convert method signature to be a bit more sane, Added additional static content options, Added Url overrides if you wanted to have WkHTMLToPDF grab external sites for any portion of the generated document, exposed some process options
