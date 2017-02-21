@@ -1,6 +1,5 @@
 # Shark.PdfConvert
 
-----
 ## What is Shark.PdfConvert?
 
 Shark.PdfConvert is a simple .NET Core (also targets net451) wrapper around the [WkHtmlToPdf](http://wkhtmltopdf.org) tool. Most options are exposed via a PdfConversionSettings object, others can be specified by using Custom overrides for the configuration area you want.
