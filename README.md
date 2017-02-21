@@ -7,6 +7,8 @@ Shark.PdfConvert is a simple .NET Core (also targets net451) wrapper around the 
 
 Conversion setting defaults are set for a Windows environment and assume you have the WkHTMLToPDF (x64) tool installed. You can override the Path to the tool by overridding **PdfConversionSettings . PdfToolPath**.
 
+**You will need to install/download [WkHtmlToPdf](http://wkhtmltopdf.org), it is not embedded in the NuGet Package**
+
 ----
 ## Sample 1: Static HTML Content
 
