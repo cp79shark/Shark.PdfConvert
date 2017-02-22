@@ -74,7 +74,8 @@ Conversion setting defaults are set for a Windows environment and assume you hav
 		// TAKE CARE WHEN Accepting the Conversion Settings from user land, it would be best 
 		// to just NOT DO it, accept your own custom model and map the parameters as needed.
 		// If you insist, then you could do something like the following to prevent malicious code execution
-		// also be careful with the Custom*Args options, etc
+		// in my testing the Custom*Args members are not a valid attack vector, PdfToolPath certainly is, never* trust
+		// the client
 	#if DEBUG
         // set path to executable, UNSAFE DEBUG USE ONLY FOR TESTING
         model.PdfToolPath = model.PdfToolPath ?? _host.ContentRootPath + @"\wkhtmltopdf.exe";
