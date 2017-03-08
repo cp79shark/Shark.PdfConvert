@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard1.6;net451</TargetFrameworks>
+    <AssemblyName>Shark.PdfConvert</AssemblyName>
+    <PackageId>Shark.PdfConvert</PackageId>
+    <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netstandard1.6' ">$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
+    <NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard1.6' ">1.6.0</NetStandardImplicitPackageVersion>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageTags>HTML PDF WKHTMLTOPDF Conversion</PackageTags>
+    <PackageReleaseNotes>Version 1.0.1 - Fixed some minor issues with the tests
+</PackageReleaseNotes>
+    <Description>Simple .NET Core wrapper for the WkHTMLToPdf tool.</Description>
+    <Authors>cp79shark</Authors>
+    <PackageProjectUrl>https://github.com/cp79shark/Shark.PdfConvert</PackageProjectUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/cp79shark/Shark.PdfConvert/master/LICENSE</PackageLicenseUrl>
+    <Copyright>Copyright 2017 CP79Shark</Copyright>
+    <Version>1.0.1</Version>
+    <PackageIconUrl>https://raw.githubusercontent.com/cp79shark/Shark.PdfConvert/master/shark.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/cp79shark/Shark.PdfConvert</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+  </PropertyGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' ">
+    <PackageReference Include="System.Diagnostics.Process" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net451' ">
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+
+</Project>
