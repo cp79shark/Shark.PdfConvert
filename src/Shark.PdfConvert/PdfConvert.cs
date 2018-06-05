@@ -4,6 +4,7 @@
     using System.Text;
     using System.IO;
     using System.Diagnostics;
+    using System.Linq;
 
     /// <summary>
     /// Pdf Conversion wrapping the WkHtmlToPdf tool
@@ -92,9 +93,25 @@
             }
 
             // PAGE
-            options.AppendFormat("page \"{1}\" \"{0}\" ",
-                temporaryPdfFilePath,
-                string.IsNullOrWhiteSpace(config.ContentUrl) ? temporaryContentFilePath : config.ContentUrl);
+            if (config.ContentUrls.Any())
+            {
+                var count = config.ContentUrls.Count - 1;
+                if (count < 0) count = 0;
+
+                foreach (var url in config.ContentUrls.Take(count))
+                {
+                    options.AppendFormat("page \"{0}\" ", url);
+                }
+
+                options.AppendFormat("page \"{1}\" \"{0}\" ",
+                        temporaryPdfFilePath,
+                        config.ContentUrls.Last());
+            } else
+            {
+                options.AppendFormat("page \"{1}\" \"{0}\" ",
+                    temporaryPdfFilePath,
+                    string.IsNullOrWhiteSpace(config.ContentUrl) ? temporaryContentFilePath : config.ContentUrl);
+            }
 
             // PAGE OPTIONS
             if (string.IsNullOrWhiteSpace(config.CustomWkHtmlPageArgs))
@@ -133,8 +150,9 @@
 
             if (contentInputStream == null &&
                 string.IsNullOrWhiteSpace(config.Content) &&
-                string.IsNullOrWhiteSpace(config.ContentUrl))
-                throw new ArgumentException("You must specify an input stream, static Content, or Content Url.");
+                string.IsNullOrWhiteSpace(config.ContentUrl) &&
+                config.ContentUrls.Any() == false)
+                throw new ArgumentException("You must specify an input stream, static Content, Content Url, or Content Urls.");
 
             if (pdfOutputStream == null &&
                 string.IsNullOrWhiteSpace(config.OutputPath))

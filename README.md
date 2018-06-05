@@ -23,7 +23,7 @@ Conversion setting defaults are set for a Windows environment and assume you hav
 
     PdfConvert.Convert(new PdfConversionSettings
     {
-        Title = "My Static Content from URL",
+        Title = "My URL based Content",
         ContentUrl = "http://www.lipsum.com/",
         OutputPath = @"C:\temp\temp-url.pdf"
     });
@@ -94,7 +94,20 @@ Conversion setting defaults are set for a Windows environment and assume you hav
         };
 	}
 
+## Sample 6: Get Content from multiple URLs
+
+    var settings = new PdfConversionSettings
+    {
+        Title = "My Content from multiple URLs",
+        OutputPath = @"C:\temp\temp-url-multiple.pdf"
+    };
+    settings.ContentUrls.Add("http://www.lipsum.com/");
+    settings.ContentUrls.Add("http://www.google.com/");
+
+    PdfConvert.Convert(settings);
+
 ## Revision History
+* **1.0.2** - Added ContentUrls property to PdfConversionSettings to allow for multiple URLs to be specified. Requested via [Issue](https://github.com/cp79shark/Shark.PdfConvert/issues/4).
 * **1.0.1** - Spoke to soon, updated the samples, they had a typo, small tweaks in the code, nothing breaking or signature modifying
 * **1.0.0** - Should be stable going forward except for any bugs found. Modified Convert method signature to be a bit more sane, Added additional static content options, Added Url overrides if you wanted to have WkHTMLToPDF grab external sites for any portion of the generated document, exposed some process options
 * **0.1.0** - Initial Upload

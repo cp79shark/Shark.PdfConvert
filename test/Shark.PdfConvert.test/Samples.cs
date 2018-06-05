@@ -72,5 +72,27 @@ namespace Shark.PdfConvert.test
                 it["Should have created a PDF document in the Temp folder"] = () => File.Exists(@"C:\temp\www.google.com.pdf").ShouldBeTrue();
             };
         }
+
+        void Given_a_sample_conversion_settings_with_multiple_http_based_contents()
+        {
+            context["When performing the PDF Conversion of the provided HTML from a couple URLs"] = () =>
+            {
+                beforeEach = () =>
+                {
+                    var settings = new PdfConversionSettings
+                    {
+                        Title = "My Static Content from URL",
+                        OutputPath = @"C:\temp\temp-url-multiple.pdf"
+                    };
+
+                    settings.ContentUrls.Add("https://www.google.com");
+                    settings.ContentUrls.Add("http://lipsum.com");
+
+                    PdfConvert.Convert(settings);
+                };
+
+                it["Should have created a PDF document in the Temp folder"] = () => File.Exists(@"C:\temp\temp-url-multiple.pdf").ShouldBeTrue();
+            };
+        }
     }
 }

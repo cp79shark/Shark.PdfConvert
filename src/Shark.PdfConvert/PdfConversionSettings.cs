@@ -1,4 +1,6 @@
-﻿namespace Shark.PdfConvert
+﻿using System.Collections.Generic;
+
+namespace Shark.PdfConvert
 {
     public class PdfConversionSettings
     {
@@ -124,6 +126,11 @@
         /// If specified will override Content and any Stream passed to the Convert methods
         /// </summary>
         public string ContentUrl { get; set; }
+        /// <summary>
+        /// If specified will override Content, Stream, and Content Url
+        /// Allows for multiple URLs. PDF will be generated in order of url list.
+        /// </summary>
+        public ICollection<string> ContentUrls { get; private set; } = new List<string>();
         /// <summary>
         /// If specified will override PageHeaderHtml and any Stream passed to the Convert methods
         /// </summary>
