@@ -106,7 +106,21 @@ Conversion setting defaults are set for a Windows environment and assume you hav
 
     PdfConvert.Convert(settings);
 
+## Sample 7: Zoom and Page Size (Issue [#5](https://github.com/cp79shark/Shark.PdfConvert/issues/5))
+
+    PdfConvert.Convert(new PdfConversionSettings
+    {
+        Title = "Converted by Shark.PdfConvert",
+        LowQuality = false,
+        Margins = new PdfPageMargins() { Bottom = 10, Left = 10, Right = 10, Top = 10 },
+        Size = PdfPageSize.A3,
+        Zoom = 3.2f,
+        Content = @"<h1>Lorem ipsum dolor sit amet consectetuer adipiscing elit I SHOULD BE RED BY JAVASCRIPT</h1><script>document.querySelector('h1').style.color = 'rgb(128,0,0)';</script>",
+        OutputPath = @"C:\temp\sample7.pdf"
+    });
+
 ## Revision History
+* **1.0.3** - Fixed Issue [#5](https://github.com/cp79shark/Shark.PdfConvert/issues/5) with Zoom / Page Size options and Fixed Header/Footer/Cover issues.
 * **1.0.2** - Added ContentUrls property to PdfConversionSettings to allow for multiple URLs to be specified. Requested via [Issue](https://github.com/cp79shark/Shark.PdfConvert/issues/4).
 * **1.0.1** - Spoke to soon, updated the samples, they had a typo, small tweaks in the code, nothing breaking or signature modifying
 * **1.0.0** - Should be stable going forward except for any bugs found. Modified Convert method signature to be a bit more sane, Added additional static content options, Added Url overrides if you wanted to have WkHTMLToPDF grab external sites for any portion of the generated document, exposed some process options

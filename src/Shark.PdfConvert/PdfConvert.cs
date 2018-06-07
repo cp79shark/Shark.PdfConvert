@@ -29,7 +29,7 @@
                 if (config.Margins.Top != null) options.AppendFormat("--margin-top {0} ", config.Margins.Top);
                 if (config.Margins.Left != null) options.AppendFormat("--margin-left {0} ", config.Margins.Left);
                 if (config.Margins.Right != null) options.AppendFormat("--margin-right {0} ", config.Margins.Right);
-                if (config.Size != PdfPageSize.Default) options.AppendFormat("--page-size {0}", config.Size.ToString());
+                if (config.Size != PdfPageSize.Default) options.AppendFormat("--page-size {0} ", config.Size.ToString());
                 if (config.Orientation != PdfPageOrientation.Default) options.AppendFormat("--orientation {0} ", config.Orientation.ToString());
                 if (string.IsNullOrWhiteSpace(config.Title) == false) options.AppendFormat("--title \"{0}\" ", config.Title.Replace("\"", ""));
             }
@@ -53,34 +53,6 @@
                 }
             }
 
-            // FOOTER
-            if (string.IsNullOrWhiteSpace(temporaryFooterFilePath) == false ||
-                string.IsNullOrWhiteSpace(config.PageFooterUrl) == false)
-            {
-                options.AppendFormat("--footer-html  \"{0}\" ",
-                    string.IsNullOrWhiteSpace(config.PageFooterUrl) ? temporaryFooterFilePath : config.PageFooterUrl);
-
-                if (string.IsNullOrWhiteSpace(config.CustomWkHtmlFooterArgs) == false)
-                {
-                    options.Append(config.CustomWkHtmlFooterArgs);
-                    options.Append(" ");
-                }
-            }
-
-            // HEADER
-            if (string.IsNullOrWhiteSpace(temporaryHeaderFilePath) == false ||
-                string.IsNullOrWhiteSpace(config.PageHeaderUrl) == false)
-            {
-                options.AppendFormat("--header-html  \"{0}\" ",
-                    string.IsNullOrWhiteSpace(config.PageHeaderUrl) ? temporaryHeaderFilePath : config.PageHeaderUrl);
-
-                if (string.IsNullOrWhiteSpace(config.CustomWkHtmlHeaderArgs) == false)
-                {
-                    options.Append(config.CustomWkHtmlHeaderArgs);
-                    options.Append(" ");
-                }
-            }
-
             // TABLE OF CONTENTS
             if (config.GenerateToc)
             {
@@ -100,30 +72,64 @@
 
                 foreach (var url in config.ContentUrls.Take(count))
                 {
-                    options.AppendFormat("page \"{0}\" ", url);
+                    options.Append(GetPageCommand(config, url, null, temporaryFooterFilePath, temporaryHeaderFilePath));
                 }
 
-                options.AppendFormat("page \"{1}\" \"{0}\" ",
-                        temporaryPdfFilePath,
-                        config.ContentUrls.Last());
+                options.Append(GetPageCommand(config, config.ContentUrls.Last(), temporaryPdfFilePath, temporaryFooterFilePath, temporaryHeaderFilePath));
             } else
             {
-                options.AppendFormat("page \"{1}\" \"{0}\" ",
-                    temporaryPdfFilePath,
-                    string.IsNullOrWhiteSpace(config.ContentUrl) ? temporaryContentFilePath : config.ContentUrl);
+                options.Append(GetPageCommand(config, (string.IsNullOrWhiteSpace(config.ContentUrl) ? temporaryContentFilePath : config.ContentUrl), temporaryPdfFilePath, temporaryFooterFilePath, temporaryHeaderFilePath));
             }
 
             // PAGE OPTIONS
-            if (string.IsNullOrWhiteSpace(config.CustomWkHtmlPageArgs))
-            {
-                if (config.Zoom != null) options.AppendFormat("--zoom {0} ", config.Zoom);
-            }
-            else
+            if (string.IsNullOrWhiteSpace(config.CustomWkHtmlPageArgs) == false)
             {
                 options.Append(config.CustomWkHtmlPageArgs);
             }
 
             return options.ToString();
+        }
+
+        private static string GetPageCommand(PdfConversionSettings config, string url, string tempPath = null, string temporaryFooterFilePath = null, string temporaryHeaderFilePath = null)
+        {
+            var pageOption = new StringBuilder("page");            
+            pageOption.Append($@" ""{url}"" ");
+
+            // Page Options
+            if (config.Zoom != null) pageOption.AppendFormat("--zoom {0} ", config.Zoom);
+
+            // FOOTER
+            if (string.IsNullOrWhiteSpace(temporaryFooterFilePath) == false ||
+                string.IsNullOrWhiteSpace(config.PageFooterUrl) == false)
+            {
+                pageOption.AppendFormat("--footer-html  \"{0}\" ",
+                    string.IsNullOrWhiteSpace(config.PageFooterUrl) ? temporaryFooterFilePath : config.PageFooterUrl);
+
+                if (string.IsNullOrWhiteSpace(config.CustomWkHtmlFooterArgs) == false)
+                {
+                    pageOption.Append(config.CustomWkHtmlFooterArgs);
+                    pageOption.Append(" ");
+                }
+            }
+
+            // HEADER
+            if (string.IsNullOrWhiteSpace(temporaryHeaderFilePath) == false ||
+                string.IsNullOrWhiteSpace(config.PageHeaderUrl) == false)
+            {
+                pageOption.AppendFormat("--header-html  \"{0}\" ",
+                    string.IsNullOrWhiteSpace(config.PageHeaderUrl) ? temporaryHeaderFilePath : config.PageHeaderUrl);
+
+                if (string.IsNullOrWhiteSpace(config.CustomWkHtmlHeaderArgs) == false)
+                {
+                    pageOption.Append(config.CustomWkHtmlHeaderArgs);
+                    pageOption.Append(" ");
+                }
+            }
+
+
+            if (string.IsNullOrWhiteSpace(tempPath) == false) pageOption.Append($@"""{tempPath}"" ");
+
+            return pageOption.ToString();
         }
 
         /// <summary>
@@ -262,6 +268,7 @@
                 // start process
                 using (var process = new Process())
                 {
+
                     ProcessStartInfo startInfo = new ProcessStartInfo()
                     {
                         CreateNoWindow = config.ProcessOptionCreateNoWindow,
