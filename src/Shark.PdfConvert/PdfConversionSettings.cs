@@ -155,6 +155,10 @@ namespace Shark.PdfConvert
         /// I've noticed some odd behavior with this ProcessStartInfo option enabled, so I'm making the default false
         /// </summary>
         public bool ProcessOptionRedirectStandardError { get; set; } = false;
+        /// <summary>
+        /// Key value pairs to be used for custom headers
+        /// </summary>
+        public Dictionary<string, string> CustomHeaders { get; set; } = new Dictionary<string, string>();
     }
 
     /// <summary>

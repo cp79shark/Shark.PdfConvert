@@ -5,6 +5,7 @@
     using System.IO;
     using System.Diagnostics;
     using System.Linq;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Pdf Conversion wrapping the WkHtmlToPdf tool
@@ -32,6 +33,12 @@
                 if (config.Size != PdfPageSize.Default) options.AppendFormat("--page-size {0} ", config.Size.ToString());
                 if (config.Orientation != PdfPageOrientation.Default) options.AppendFormat("--orientation {0} ", config.Orientation.ToString());
                 if (string.IsNullOrWhiteSpace(config.Title) == false) options.AppendFormat("--title \"{0}\" ", config.Title.Replace("\"", ""));
+
+                //iterate through custom headers
+                foreach (KeyValuePair<string, string> customHeader in config.CustomHeaders)
+                {
+                    options.AppendFormat("--custom-header \"{0}\" \"{1}\" ", customHeader.Key, customHeader.Value);
+                }
             }
             else
             {
