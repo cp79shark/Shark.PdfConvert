@@ -11,19 +11,25 @@
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageTags>HTML PDF WKHTMLTOPDF Conversion</PackageTags>
-    <PackageReleaseNotes>Version 1.0.2 - Added ContentUrls property to PdfConversionSettings to allow specifying multiple URLs
+    <PackageReleaseNotes>Version 1.0.4 - Merged PRs from very patient PR submitters
+Version 1.0.3 - Fixing issues 2 and 5 (Zoom/Page/Header/Footer/Cover)
+Version 1.0.2 - Added ContentUrls property to PdfConversionSettings to allow specifying multiple URLs
 Version 1.0.1 - Fixed some minor issues with the tests
 </PackageReleaseNotes>
     <Description>Simple .NET Core wrapper for the WkHTMLToPdf tool.</Description>
     <Authors>cp79shark</Authors>
     <PackageProjectUrl>https://github.com/cp79shark/Shark.PdfConvert</PackageProjectUrl>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/cp79shark/Shark.PdfConvert/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Copyright>Copyright 2017 CP79Shark</Copyright>
-    <Version>1.0.2</Version>
-    <PackageIconUrl>https://raw.githubusercontent.com/cp79shark/Shark.PdfConvert/master/shark.png</PackageIconUrl>
+    <Version>1.0.4</Version>
+    <PackageIcon>shark.png</PackageIcon>
     <RepositoryUrl>https://github.com/cp79shark/Shark.PdfConvert</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\shark.png" Pack="true" PackagePath="\"/>
+  </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' ">
     <PackageReference Include="System.Diagnostics.Process" Version="4.3.0" />

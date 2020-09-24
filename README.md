@@ -119,7 +119,8 @@ Conversion setting defaults are set for a Windows environment and assume you hav
         OutputPath = @"C:\temp\sample7.pdf"
     });
 
-## Revision History
+## Revision History*
+* **1.0.4** - Merged PRs from very patient PR submitters [#16](https://github.com/cp79shark/Shark.PdfConvert/pull/16), [#9](https://github.com/cp79shark/Shark.PdfConvert/pull/9), and [#7](https://github.com/cp79shark/Shark.PdfConvert/pull/7)
 * **1.0.3** - Fixed Issue [#5](https://github.com/cp79shark/Shark.PdfConvert/issues/5) with Zoom / Page Size options and Fixed Header/Footer/Cover issues.
 * **1.0.2** - Added ContentUrls property to PdfConversionSettings to allow for multiple URLs to be specified. Requested via [Issue](https://github.com/cp79shark/Shark.PdfConvert/issues/4).
 * **1.0.1** - Spoke to soon, updated the samples, they had a typo, small tweaks in the code, nothing breaking or signature modifying
