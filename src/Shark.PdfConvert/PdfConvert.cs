@@ -29,7 +29,11 @@
                 if (config.Margins.Top != null) options.AppendFormat("--margin-top {0} ", config.Margins.Top);
                 if (config.Margins.Left != null) options.AppendFormat("--margin-left {0} ", config.Margins.Left);
                 if (config.Margins.Right != null) options.AppendFormat("--margin-right {0} ", config.Margins.Right);
+
                 if (config.Size != PdfPageSize.Default) options.AppendFormat("--page-size {0} ", config.Size.ToString());
+                if (config.PageWidth != null) options.AppendFormat("--page-width {0} ", config.PageWidth.ToString());
+                if (config.PageHeight != null) options.AppendFormat("--page-height {0} ", config.PageHeight.ToString());
+
                 if (config.Orientation != PdfPageOrientation.Default) options.AppendFormat("--orientation {0} ", config.Orientation.ToString());
                 if (string.IsNullOrWhiteSpace(config.Title) == false) options.AppendFormat("--title \"{0}\" ", config.Title.Replace("\"", ""));
             }
