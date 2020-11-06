@@ -38,6 +38,8 @@
                 if (config.Orientation != PdfPageOrientation.Default) options.AppendFormat("--orientation {0} ", config.Orientation.ToString());
                 if (string.IsNullOrWhiteSpace(config.Title) == false) options.AppendFormat("--title \"{0}\" ", config.Title.Replace("\"", ""));
 
+                if (config.Quiet) options.Append("--quiet ");
+
                 //iterate through custom headers
                 foreach (KeyValuePair<string, string> customHeader in config.CustomHeaders)
                 {
